@@ -1,14 +1,9 @@
 # Lancer le projet
 
-Lancer l'interface web et le backend
-```bash
-cd web_interface
-npm start
-node server.js
-```
-
 # Lancer les conteneurs
 
 ```bash
 docker-compose up -d
 ```
+
+Bien attendre 30sec environ que l'app React se lance, elle sera disponible sous localhost:3000

@@ -26,6 +26,8 @@ function App() {
       timestamp: Date.now(), // Génère le timestamp actuel si vous ne souhaitez pas le spécifier manuellement
     };
 
+    console.log(payload);
+
     await fetch('http://localhost:3001/send', {
       method: 'POST',
       headers: {

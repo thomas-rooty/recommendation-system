@@ -128,8 +128,11 @@ services:
     working_dir: /app
     volumes:
       - ./front:/app
+      - /app/node_modules
     ports:
       - "3000:3000"
+    environment:
+      - CHOKIDAR_USEPOLLING=true # Hot reload
     command: bash -c "npm install && npm start"
     depends_on:
       - node-backend

@@ -108,6 +108,32 @@ services:
     depends_on:
       - zookeeper
 
+  node-backend:
+    image: node:14
+    container_name: node-backend
+    working_dir: /app
+    volumes:
+      - ./back:/app
+    ports:
+      - "3001:3000"
+    environment:
+      - KAFKA_BROKER=kafka:9092
+    command: bash -c "npm install && npm start"
+    depends_on:
+      - kafka
+
+  react-app:
+    image: node:14
+    container_name: react-app
+    working_dir: /app
+    volumes:
+      - ./front:/app
+    ports:
+      - "3000:3000"
+    command: bash -c "npm install && npm start"
+    depends_on:
+      - node-backend
+
 volumes:
   namenode_volume:
   hadoop_namenode:

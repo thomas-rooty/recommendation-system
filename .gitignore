@@ -3,5 +3,6 @@
 .code
 .idea
 
-# Web interface
-web_interface/node_modules
+# Web
+front/node_modules
+back/node_modules

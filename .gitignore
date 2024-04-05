@@ -2,3 +2,6 @@
 .vscode
 .code
 .idea
+
+# Web interface
+web_interface/node_modules

@@ -32,6 +32,7 @@ query = df.writeStream \
     .outputMode("append") \
     .format("console") \
     .start()
+
 # Parquet output
 query = df.writeStream \
     .outputMode("append") \

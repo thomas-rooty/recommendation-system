@@ -16,16 +16,30 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/send', async (req, res) => {
-  const { message } = req.body;
+  const { username, contentId, contentCategory, interactionType, timestamp } = req.body;
 
-  await producer.send({
-    topic: 'topic1',
-    messages: [
-      { value: message },
-    ],
-  });
+  // Construction de l'objet message
+  const message = {
+    username,
+    contentId,
+    contentCategory,
+    interactionType,
+    timestamp: timestamp || Date.now(),
+  };
 
-  res.status(200).send('Message sent');
+  try {
+    await producer.send({
+      topic: 'topic1',
+      messages: [
+        { value: JSON.stringify(message) },
+      ],
+    });
+
+    res.status(200).send('Message sent');
+  } catch (error) {
+    console.error('Error sending message to Kafka:', error);
+    res.status(500).send('Failed to send message');
+  }
 });
 
 const run = async () => {
